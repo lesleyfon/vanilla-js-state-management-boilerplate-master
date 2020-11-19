@@ -3,7 +3,7 @@ import PubSub from "./../lib/pubsub.js";
 /**
  * Contains out application state
  */
-class Store {
+export default class Store {
 	constructor(params) {
 		let self = this;
 		self.actions = {};

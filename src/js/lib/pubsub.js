@@ -10,7 +10,7 @@ export default class PubSub {
 	 */
 	subscribe(event, cb) {
 		let self = this;
-		if (!self.events.hasProperty(event)) {
+		if (!self.events.hasOwnProperty(event)) {
 			self.events[event] = [];
 		}
 
@@ -25,7 +25,7 @@ export default class PubSub {
 	publish(event, data = {}) {
 		let self = this;
 
-		if (!self.events.hasProperty(event)) {
+		if (!self.events.hasOwnProperty(event)) {
 			return [];
 		}
 

@@ -1,5 +1,5 @@
 import Component from "../lib/component.js";
-import store from "../store/store.js";
+import store from "../store/index.js";
 
 export default class Count extends Component {
 	constructor() {

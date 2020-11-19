@@ -1,7 +1,7 @@
-import Component from "../lib/component";
+import Component from "../lib/component.js";
 import store from "../store/index.js";
 
-class List extends Component {
+export default class List extends Component {
 	constructor() {
 		super({
 			store,

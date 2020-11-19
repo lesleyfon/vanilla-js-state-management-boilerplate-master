@@ -52,7 +52,8 @@ export default class Store {
 	 */
 	dispatch(actionKey, payload) {
 		let self = this;
-		if (typeof self.actions[actionKey] === "function") {
+		console.log(self);
+		if (typeof self.actions[actionKey] !== "function") {
 			console.error(`Action "${actionKey}" doesn't exist. `);
 			return false;
 		}

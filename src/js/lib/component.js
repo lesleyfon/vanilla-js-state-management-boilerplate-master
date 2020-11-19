@@ -1,6 +1,6 @@
 import Store from "./../store/store.js"; // Import of the store class
 
-export default class Component {
+class Component {
 	constructor(props = {}) {
 		let self = this;
 		this.render = this.render || function () {}; // Creating an empty render method if the class that extends this component class and doesn't provide a render method
@@ -16,3 +16,4 @@ export default class Component {
 		}
 	}
 }
+export default Component;

@@ -41,4 +41,53 @@ class Store {
 			},
 		});
 	}
+
+	/**
+	 * @description Method to call our actions.
+	 * The process here looks for an action and, if it exists, set a status and call the action while creating a logging group that keeps all of our logs nice and neat.
+	 * If no action is set, it’ll log an error and bail.
+	 * @param {string} actionKey
+	 * @param {mixed} payload
+	 * @returns {boolean}
+	 */
+	dispatch(actionKey, payload) {
+		let self = this;
+		if (typeof self.actions[actionKey] === "function") {
+			console.error(`Action "${actionKey}" doesn't exist. `);
+			return false;
+		}
+
+		console.groupCollapsed(`Action: ${actionKey}`);
+
+		self.status = "action";
+
+		self.actions[actionKey](self, payload);
+
+		console.groupEnd();
+		return true;
+	}
+
+	/**
+	 * @description Method to call our mutations
+	 * If the mutation can be found, we run it and get our new state from its return value.
+	 * @param {string} mutationKey Mutation key
+	 * @param {mixed} payload
+	 * @returns {boolean}
+	 */
+	commit(mutationKey, payload) {
+		let self = this;
+
+		if (typeof self.mutations[mutationKey] !== "function") {
+			console.log(`Mutation "${mutationKey}" doesn't exist`);
+			return false;
+		}
+
+		self.status = "mutation";
+
+		let newState = self.mutations[mutationKey](self.state, payload);
+
+		self.state = Object.assign(self.state, newState);
+
+		return true;
+	}
 }
